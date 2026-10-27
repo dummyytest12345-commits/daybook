@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#eef2ff"/><stop offset="1" stop-color="#f8fafc"/></linearGradient>
+    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#6366f1"/><stop offset="1" stop-color="#4338ca"/></linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <g transform="translate(90 90)">
+    <rect width="96" height="96" rx="22" fill="url(#g)"/>
+    <g transform="scale(1.5)"><path d="M13 19.5c6.5-2.6 13-2.2 19 1.5v27c-6-3.7-12.5-4.1-19-1.5z" fill="#fff" opacity=".92"/>
+<path d="M51 19.5c-6.5-2.6-13-2.2-19 1.5v27c6-3.7 12.5-4.1 19-1.5z" fill="#fff"/>
+<path d="M18 28.5h8M18 34h8M18 39.5h6" stroke="#a5b4fc" stroke-width="2.6" stroke-linecap="round" fill="none"/>
+<path d="M37.5 33.5l4.2 4.2 7-8.5" fill="none" stroke="#4f46e5" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round"/></g>
+  </g>
+  <text x="90" y="290" font-family="Inter, Arial, sans-serif" font-weight="700" font-size="84" fill="#0f172a">Daybook</text>
+  <text x="90" y="350" font-family="Inter, Arial, sans-serif" font-size="40" fill="#475569">The work diary that</text><text x="90" y="398" font-family="Inter, Arial, sans-serif" font-size="40" fill="#475569">writes your report.</text>
+  <g transform="translate(90 450)" font-family="Inter, Arial, sans-serif" font-size="26" font-weight="600">
+    <rect width="160" height="52" rx="26" fill="#dcfce7"/><text x="80" y="35" text-anchor="middle" fill="#15803d">Projects</text>
+    <rect x="175" width="150" height="52" rx="26" fill="#e0e7ff"/><text x="250" y="35" text-anchor="middle" fill="#4338ca">Analytics</text>
+    <rect x="340" width="270" height="52" rx="26" fill="#fef3c7"/><text x="475" y="35" text-anchor="middle" fill="#b45309">Excel · PDF · CSV</text>
+  </g>
+  <g transform="translate(760 110)" opacity=".95">
+    <rect width="350" height="410" rx="24" fill="#fff" stroke="#e2e8f0" stroke-width="2"/>
+    <g stroke-linecap="round">
+      <rect x="30" y="40" width="290" height="14" rx="7" fill="#e2e8f0"/><rect x="30" y="40" width="210" height="14" rx="7" fill="#16a34a"/>
+      <g fill="#16a34a"><circle cx="46" cy="110" r="12"/><circle cx="46" cy="160" r="12"/></g><circle cx="46" cy="210" r="12" fill="#d97706"/><circle cx="46" cy="260" r="12" fill="#94a3b8"/>
+      <g fill="#cbd5e1"><rect x="76" y="103" width="200" height="14" rx="7"/><rect x="76" y="153" width="160" height="14" rx="7"/><rect x="76" y="203" width="220" height="14" rx="7"/><rect x="76" y="253" width="140" height="14" rx="7"/></g>
+      <g transform="translate(30 310)"><rect width="60" height="70" rx="6" fill="#c7d2fe"/><rect x="80" y="20" width="60" height="50" rx="6" fill="#818cf8"/><rect x="160" y="35" width="60" height="35" rx="6" fill="#6366f1"/><rect x="240" y="10" width="60" height="60" rx="6" fill="#4338ca"/></g>
+    </g>
+  </g>
+</svg>

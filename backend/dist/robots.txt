@@ -1,0 +1,11 @@
+User-agent: *
+Allow: /$
+Allow: /login
+Allow: /register
+Disallow: /log/
+Disallow: /analytics
+Disallow: /reports
+Disallow: /data
+Disallow: /settings
+
+Sitemap: http://localhost:5173/sitemap.xml

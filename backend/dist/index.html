@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Runs before first paint: apply the saved theme and decide what the very first frame shows. -->
+    <script>
+      (function () {
+        try {
+          var d = document.documentElement
+          var pref = localStorage.getItem('daybook:theme') || 'system'
+          var dark = pref === 'dark' || (pref === 'system' && window.matchMedia('(prefers-color-scheme: dark)').matches)
+          if (dark) { d.classList.add('dark'); d.style.colorScheme = 'dark' }
+          var signedIn = localStorage.getItem('worklog:v1:session') || sessionStorage.getItem('worklog:v1:session')
+          var p = location.pathname
+          var isPublic = p === '/' || p === '/login' || p === '/register'
+          // signed in: show the loading screen; signed out on a private URL: show nothing (we redirect to /login)
+          if (signedIn) d.setAttribute('data-boot', 'app')
+          else if (!isPublic) d.setAttribute('data-boot', 'redirect')
+        } catch (e) {}
+      })()
+    </script>
+    <style>html{background:#f8fafc}html.dark{background:#0b1120}#boot{background:#f8fafc;place-items:center;display:none;position:fixed;inset:0}html.dark #boot{background:#0b1120}html[data-boot=app] #boot{display:grid}html[data-boot=app] #seo-fallback,html[data-boot=redirect] #seo-fallback{display:none}#boot .ring{border:4px solid #6366f12e;border-top-color:#6366f1;border-radius:50%;width:88px;height:88px;animation:.9s linear infinite boot-spin;position:relative}#boot .mark{width:44px;height:44px;margin:auto;position:absolute;inset:0}@keyframes boot-spin{to{transform:rotate(360deg)}}@media (prefers-reduced-motion:reduce){#boot .ring{animation:none}}</style>
+    <title>Daybook – Daily work diary, task log and report generator</title>
+    <meta name="description" content="Daybook is a fast personal work diary. Log daily tasks in seconds, track progress by day, week and month, see analytics, and export Excel, PDF or CSV reports. Private and offline-ready." />
+    <meta name="keywords" content="work log, daily task log, work diary, timesheet, task tracker, standup generator, productivity analytics, Excel report, PDF report" />
+    <meta name="author" content="Daybook" />
+    <meta name="robots" content="index, follow, max-image-preview:large" />
+    <link rel="canonical" href="http://localhost:5173/" />
+
+    <meta name="theme-color" content="#4f46e5" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#0b1120" media="(prefers-color-scheme: dark)" />
+    <meta name="color-scheme" content="light dark" />
+    <meta name="application-name" content="Daybook" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-title" content="Work Log" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <meta name="format-detection" content="telephone=no" />
+
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/icons/apple-touch-icon.png" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Daybook" />
+    <meta property="og:title" content="Daybook – Log tasks fast, export the report" />
+    <meta property="og:description" content="A personal work diary that turns daily task notes into clear day, week and month reports. Excel, PDF and CSV export." />
+    <meta property="og:url" content="http://localhost:5173/" />
+    <meta property="og:image" content="http://localhost:5173/og-image.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Daybook: task list, progress bar and analytics preview" />
+    <meta property="og:locale" content="en_US" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Daybook – Log tasks fast, export the report" />
+    <meta name="twitter:description" content="Log daily tasks in seconds, see analytics, export Excel, PDF or CSV." />
+    <meta name="twitter:image" content="http://localhost:5173/og-image.png" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "Daybook",
+        "url": "http://localhost:5173/",
+        "applicationCategory": "BusinessApplication",
+        "operatingSystem": "Any (web browser)",
+        "description": "Personal work diary with analytics and Excel, PDF and CSV reports.",
+        "image": "http://localhost:5173/og-image.png",
+        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+        "featureList": ["Daily, weekly and monthly task logs", "Analytics dashboard and heatmap", "Excel, PDF and CSV export", "Works offline as an installable app"]
+      }
+    </script>
+    <script type="module" crossorigin src="/assets/index-CHCma28h.js"></script>
+    <link rel="modulepreload" crossorigin href="/assets/rolldown-runtime-Dd_uD5pT.js">
+    <link rel="modulepreload" crossorigin href="/assets/format-BsGwHavY.js">
+    <link rel="modulepreload" crossorigin href="/assets/icons-_55hoBFO.js">
+    <link rel="modulepreload" crossorigin href="/assets/preload-helper-BZ1Pz5am.js">
+    <link rel="modulepreload" crossorigin href="/assets/useSeo-O1Mt4S_F.js">
+    <link rel="modulepreload" crossorigin href="/assets/subDays-BQE8r1kq.js">
+    <link rel="modulepreload" crossorigin href="/assets/date-DrsEpaom.js">
+    <link rel="modulepreload" crossorigin href="/assets/projects-BZY4X7oC.js">
+    <link rel="modulepreload" crossorigin href="/assets/useStore-_n6WgzxT.js">
+    <link rel="modulepreload" crossorigin href="/assets/summarize-ByUUjlbZ.js">
+    <link rel="stylesheet" crossorigin href="/assets/index-BrHro_dD.css">
+  <link rel="manifest" href="/manifest.webmanifest"><script id="vite-plugin-pwa:register-sw" src="/registerSW.js"></script></head>
+  <body>
+    <div id="root">
+      <div id="boot" aria-hidden="true">
+        <div style="position:relative;width:88px;height:88px">
+          <div class="ring"></div>
+          <svg class="mark" viewBox="0 0 64 64">
+            <defs><linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#7c83ff"/><stop offset="1" stop-color="#4338ca"/></linearGradient></defs>
+            <rect width="64" height="64" rx="15" fill="url(#bg)"/>
+            <path d="M13 19.5c6.5-2.6 13-2.2 19 1.5v27c-6-3.7-12.5-4.1-19-1.5z" fill="#fff" opacity=".92"/>
+            <path d="M51 19.5c-6.5-2.6-13-2.2-19 1.5v27c6-3.7 12.5-4.1 19-1.5z" fill="#fff"/>
+            <path d="M37.5 33.5l4.2 4.2 7-8.5" fill="none" stroke="#4f46e5" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+      </div>
+      <!-- Static content for crawlers and slow first paint; replaced when the app loads. -->
+      <main id="seo-fallback" style="max-width:760px;margin:10vh auto;padding:0 1.25rem;font-family:system-ui,sans-serif;color:#0f172a;line-height:1.55">
+        <h1>Daybook – the work diary that writes your report</h1>
+        <p>Daybook is a fast personal work diary and task log. Log daily tasks in seconds, organise them into optional projects, track progress by day, week and month, and export Excel, PDF or CSV reports. Private, offline-ready and free.</p>
+        <h2>Features</h2>
+        <ul>
+          <li>Quick add: dates, hours, modules, priority, projects and due dates in one line</li>
+          <li>Day, week, month, board and table views</li>
+          <li>Optional projects with keys, boards and work-in-progress limits</li>
+          <li>Analytics dashboard with heatmap, burn-up and insights</li>
+          <li>Excel, PDF, CSV and Markdown reports, plus a standup generator</li>
+          <li>Data stays in your browser; works offline as an installable app</li>
+        </ul>
+        <p><a href="/register">Create a free account</a> · <a href="/login">Sign in</a></p>
+        <p>Loading the app… JavaScript is required to use Daybook.</p>
+      </main>
+    </div>
+    <noscript>Daybook needs JavaScript enabled to run.</noscript>
+  </body>
+</html>

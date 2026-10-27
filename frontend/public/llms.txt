@@ -1,0 +1,15 @@
+# Daybook
+
+> Daybook is a free, private, offline-ready personal work diary and task log. Log daily tasks in seconds, organise them into optional projects, see analytics, and export Excel, PDF or CSV reports.
+
+## Key facts
+- Quick add parses dates, hours, #module, !priority, ~project and due dates from one line.
+- Views: day, week, month, Kanban board (with WIP limits per project) and table.
+- Projects are optional; tasks can be moved between projects or left without one.
+- Reports: Excel (multi-sheet with formulas), PDF, CSV, Markdown, standup generator.
+- Data is stored in the browser (localStorage); accounts are local to the device.
+
+## Pages
+- [Home](/): overview, features and FAQ
+- [Sign in](/login)
+- [Create account](/register)

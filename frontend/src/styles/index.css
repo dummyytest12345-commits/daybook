@@ -1,0 +1,224 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --color-canvas: #f8fafc;
+  --color-surface: #ffffff;
+  --color-line: #e2e8f0;
+  --color-ink: #0f172a;
+  --color-muted: #475569;
+  --color-primary: #4f46e5;
+  --color-primary-hover: #4338ca;
+  --color-st-completed: #16a34a;
+  --color-st-progress: #d97706;
+  --color-st-pending: #64748b;
+  --color-st-blocked: #dc2626;
+  --radius-card: 12px;
+  --radius-input: 8px;
+  --shadow-card: 0 1px 2px rgb(15 23 42 / 0.06), 0 1px 3px rgb(15 23 42 / 0.08);
+  --shadow-pop: 0 4px 6px rgb(15 23 42 / 0.06), 0 10px 24px rgb(15 23 42 / 0.12);
+}
+
+.dark {
+  color-scheme: dark;
+  --color-canvas: #0b1120;
+  --color-surface: #121b31;
+  --color-line: #26324d;
+  --color-ink: #f1f5f9;
+  --color-muted: #a3b1c6;
+  /* fill colour (buttons, active chips) keeps 4.5:1 with white text; text/link colour is lighter */
+  --color-primary: #6366f1;
+  --color-primary-hover: #7478f5;
+  --color-primary-ink: #a5b4fc;
+  --color-st-completed: #34d399;
+  --color-st-progress: #fbbf24;
+  --color-st-pending: #94a3b8;
+  --color-st-blocked: #f87171;
+  --shadow-card: 0 1px 2px rgb(0 0 0 / 0.4), 0 1px 3px rgb(0 0 0 / 0.35);
+  --shadow-pop: 0 4px 6px rgb(0 0 0 / 0.35), 0 10px 24px rgb(0 0 0 / 0.5);
+}
+
+/* primary used as TEXT needs the lighter ink colour on dark surfaces */
+.dark .text-primary,
+.dark .hover\:text-primary:hover,
+.dark .data-\[state\=active\]\:text-primary[data-state=active] {
+  color: var(--color-primary-ink);
+}
+
+.dark .bg-primary .text-primary {
+  color: inherit;
+}
+
+html {
+  font-size: 14px;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+section[id] {
+  scroll-margin-top: 4.5rem;
+}
+
+body {
+  background: var(--color-canvas);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  font-variant-numeric: tabular-nums;
+  -webkit-font-smoothing: antialiased;
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.animate-in {
+  animation: fade-in 180ms ease-out;
+}
+
+.loading-fade {
+  animation: fade-in 240ms ease-out both;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+.skeleton {
+  background: linear-gradient(90deg, var(--color-line) 25%, var(--color-canvas) 50%, var(--color-line) 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.4s infinite;
+}
+
+@media print {
+
+  aside,
+  header,
+  nav,
+  .no-print {
+    display: none !important;
+  }
+
+  body {
+    background: white;
+  }
+
+  main {
+    max-width: none !important;
+    padding: 0 !important;
+  }
+}
+
+/* ---------- progress slider ---------- */
+.progress-range {
+  -webkit-appearance: none;
+  appearance: none;
+  height: 20px;
+  background: transparent;
+  cursor: pointer;
+}
+
+.progress-range::-webkit-slider-runnable-track {
+  height: 8px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, #6366f1, #22d3ee) 0 / var(--p, 0%) 100% no-repeat, var(--color-line);
+}
+
+.progress-range::-moz-range-track {
+  height: 8px;
+  border-radius: 999px;
+  background: var(--color-line);
+}
+
+.progress-range::-moz-range-progress {
+  height: 8px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, #6366f1, #22d3ee);
+}
+
+.progress-range::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 18px;
+  height: 18px;
+  margin-top: -5px;
+  border-radius: 50%;
+  background: #fff;
+  border: 3px solid var(--color-primary);
+  box-shadow: 0 1px 4px rgb(15 23 42 / .35);
+  transition: transform 120ms;
+}
+
+.progress-range::-moz-range-thumb {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: #fff;
+  border: 3px solid var(--color-primary);
+  box-shadow: 0 1px 4px rgb(15 23 42 / .35);
+}
+
+.progress-range:hover::-webkit-slider-thumb,
+.progress-range:active::-webkit-slider-thumb {
+  transform: scale(1.15);
+}
+
+.progress-range:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 3px;
+  border-radius: 999px;
+}
+
+.progress-range:disabled {
+  opacity: .5;
+  cursor: not-allowed;
+}
+
+.progress-sheen {
+  background: linear-gradient(100deg, transparent 20%, rgb(255 255 255 / .35) 50%, transparent 80%);
+  background-size: 200% 100%;
+  animation: sheen 2.2s linear infinite;
+}
+
+@keyframes sheen {
+  from {
+    background-position: 200% 0;
+  }
+
+  to {
+    background-position: -200% 0;
+  }
+}

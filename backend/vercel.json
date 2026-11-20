@@ -16,8 +16,20 @@
       "destination": "/api"
     },
     {
+      "source": "/assets/(.*)",
+      "destination": "/dist/assets/$1"
+    },
+    {
+      "source": "/manifest.webmanifest",
+      "destination": "/dist/manifest.webmanifest"
+    },
+    {
+      "source": "/registerSW.js",
+      "destination": "/dist/registerSW.js"
+    },
+    {
       "source": "/(.*)",
-      "destination": "dist/index.html"
+      "destination": "/dist/index.html"
     }
   ]
 }

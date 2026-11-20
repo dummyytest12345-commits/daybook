@@ -10,26 +10,17 @@
       "use": "@vercel/static"
     }
   ],
-  "rewrites": [
+  "routes": [
     {
-      "source": "/api/(.*)",
-      "destination": "/api"
+      "src": "/api/(.*)",
+      "dest": "src/server.js"
     },
     {
-      "source": "/assets/(.*)",
-      "destination": "/dist/assets/$1"
+      "handle": "filesystem"
     },
     {
-      "source": "/manifest.webmanifest",
-      "destination": "/dist/manifest.webmanifest"
-    },
-    {
-      "source": "/registerSW.js",
-      "destination": "/dist/registerSW.js"
-    },
-    {
-      "source": "/(.*)",
-      "destination": "/dist/index.html"
+      "src": "/(.*)",
+      "dest": "/dist/index.html"
     }
   ]
 }

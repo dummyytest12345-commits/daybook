@@ -16,6 +16,18 @@
       "dest": "src/server.js"
     },
     {
+      "src": "/assets/(.*)",
+      "dest": "/dist/assets/$1"
+    },
+    {
+      "src": "/manifest.webmanifest",
+      "dest": "/dist/manifest.webmanifest"
+    },
+    {
+      "src": "/registerSW.js",
+      "dest": "/dist/registerSW.js"
+    },
+    {
       "handle": "filesystem"
     },
     {

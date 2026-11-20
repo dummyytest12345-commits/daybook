@@ -1,41 +1,50 @@
-import compression from 'compression'
-import cors from 'cors'
-import express from 'express'
-import helmet from 'helmet'
-import morgan from 'morgan'
-import { dbReady } from './config/db.js'
-import { env } from './config/env.js'
-import { errorHandler, notFoundHandler } from './middleware/error.js'
-import routes from './routes/index.js'
-import path from "path"
+import fs from "node:fs";
+import path from "node:path";
+// ... keep your other imports
 
-/** Builds the Express app (no listening, so tests can use it directly). */
 export function createApp() {
-  const app = express()
-  app.use(express.static(path.join(process.cwd(), 'dist'), { index: false }))
-  app.disable('x-powered-by')
-  app.set('trust proxy', 1)
+  const app = express();
+  const distPath = path.join(process.cwd(), "dist");
+  const hasDist = fs.existsSync(distPath);
 
-  app.use(helmet())
+  if (hasDist) {
+    app.use(express.static(distPath, { index: false }));
+  }
 
-  // Configured for "Self Only" (Same-Origin restriction)
-  app.use(cors({
-    origin: false, // Disables all incoming cross-origin requests completely
-    credentials: false,
-    allowedHeaders: ['Content-Type', 'Authorization', 'x-socket-id'],
-    exposedHeaders: ['Retry-After']
-  }))
+  app.disable("x-powered-by");
+  app.set("trust proxy", 1);
 
-  app.use(compression())
-  app.use(express.json({ limit: '10mb' }))
-  if (!env.isTest) app.use(morgan(env.isProd ? 'combined' : 'dev'))
+  app.use(helmet());
 
-  app.get('/health', (_req, res) => res.json({ status: 'ok', db: dbReady() ? 'up' : 'down', time: new Date().toISOString() }))
-  app.use('/api', routes)
+  app.use(
+    cors({
+      origin: false,
+      credentials: false,
+      allowedHeaders: ["Content-Type", "Authorization", "x-socket-id"],
+      exposedHeaders: ["Retry-After"],
+    }),
+  );
 
-  app.use(/.*/, (_req, res) => res.sendFile(path.join(process.cwd(), 'dist', 'index.html')))
+  app.use(compression());
+  app.use(express.json({ limit: "10mb" }));
+  if (!env.isTest) app.use(morgan(env.isProd ? "combined" : "dev"));
 
-  app.use(notFoundHandler)
-  app.use(errorHandler)
-  return app
+  app.get("/health", (_req, res) =>
+    res.json({
+      status: "ok",
+      db: dbReady() ? "up" : "down",
+      time: new Date().toISOString(),
+    }),
+  );
+  app.use("/api", routes);
+
+  if (hasDist) {
+    app.use(/.*/, (_req, res) =>
+      res.sendFile(path.join(distPath, "index.html")),
+    );
+  }
+
+  app.use(notFoundHandler);
+  app.use(errorHandler);
+  return app;
 }
